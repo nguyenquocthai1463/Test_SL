@@ -57,4 +57,6 @@ class StyleConfigColor {
   static Color warningLight2 = const Color(0xFFFFC2C2);
   static Color warningLight3 = const Color(0xFFFFF1F1);
 
+  static Color gray = const Color(0xFF808080);
+
 }
