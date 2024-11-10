@@ -146,7 +146,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         });
                       },
                     ),
-                    hintText: 'Password',
+                    hintText: 'Comfirm Password',
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
                     filled: true,
