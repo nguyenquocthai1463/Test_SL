@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_sl/screens/test.dart';
 import 'package:test_sl/utils/config-color.dart';
+import 'package:test_sl/widgets/input_box.dart';
 
 class welcomeApp extends StatefulWidget {
   const welcomeApp({super.key});
@@ -12,7 +14,7 @@ class _welcomeAppState extends State<welcomeApp> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           shadowColor: Colors.black87,
@@ -24,10 +26,10 @@ class _welcomeAppState extends State<welcomeApp> {
                 fontSize: 20,
               )),
           bottom: TabBar(
-            indicatorColor: Color.fromRGBO(25, 110, 130, 1),
+            indicatorColor: const Color.fromRGBO(25, 110, 130, 1),
             indicatorWeight: 3,
             indicatorSize: TabBarIndicatorSize.tab,
-            indicator: BoxDecoration(
+            indicator: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(
                   color: Color.fromRGBO(25, 110, 130, 1),
@@ -35,14 +37,14 @@ class _welcomeAppState extends State<welcomeApp> {
                 ),
               ),
             ),
-            labelPadding: EdgeInsets.all(0),
+            labelPadding: const EdgeInsets.all(0),
             labelColor: Colors.black,
             labelStyle: StyleConfig.textTitle,
-            unselectedLabelStyle: TextStyle(
+            unselectedLabelStyle: const TextStyle(
               fontFamily: 'Roboto',
               fontSize: 13,
             ),
-            tabs: [
+            tabs: const [
               Tab(
                 text: 'Login',
               ),
@@ -51,16 +53,11 @@ class _welcomeAppState extends State<welcomeApp> {
               ),
             ],
           ),
-          leading: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
         ),
         body: const TabBarView(
           children: <Widget>[
-
+            avs(),
+            avs(),
           ],
         ),
       ),
