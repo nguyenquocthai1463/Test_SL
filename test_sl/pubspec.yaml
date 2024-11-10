@@ -67,6 +67,9 @@ flutter:
     - assets/icons/icon_heart.png
     - assets/images/image_56.png
     - assets/images/apple-icon.png
+    - assets/image.png
+    - assets/img_dientich.png
+    - assets/img_giohang.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
