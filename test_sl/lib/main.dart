@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_sl/screens/44_31.dart';
 import 'package:test_sl/screens/welcome-app.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const welcomeApp(),
+      home: const HomeList(),
     );
   }
 }
