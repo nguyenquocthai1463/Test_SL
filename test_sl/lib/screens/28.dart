@@ -7,11 +7,63 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0; // Để theo dõi mục được chọn
+  int _imageIndex = 0; // Để theo dõi hình ảnh hiện tại
+  bool _isFavorite = false; // Để theo dõi trạng thái yêu thích
+
+  // Danh sách hình ảnh
+  final List<String> _imageList = [
+    'assets/image1.png',
+    'assets/image2.png',
+    'assets/image3.png',
+  ];
 
   // Hàm thay đổi index khi người dùng chọn một item
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  // Hàm thay đổi hình ảnh
+  void _changeImage(int index) {
+    setState(() {
+      _imageIndex = index;
+    });
+  }
+
+  // Hàm chuyển sang hình ảnh tiếp theo
+  void _nextImage() {
+    setState(() {
+      _imageIndex = (_imageIndex + 1) % _imageList.length; // Lặp qua các hình ảnh
+    });
+  }
+
+  // Hàm chuyển về hình ảnh trước
+  void _previousImage() {
+    setState(() {
+      _imageIndex = (_imageIndex - 1 + _imageList.length) % _imageList.length; // Lặp qua các hình ảnh ngược lại
+    });
+  }
+
+  // Xử lý sự kiện khi nhấn vào nút favorite
+  void _onFavoritePressed() {
+    setState(() {
+      _isFavorite = !_isFavorite; // Chuyển trạng thái yêu thích
+    });
+
+    // Hiển thị thông báo
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(_isFavorite ? 'Đã thêm vào yêu thích!' : 'Đã bỏ yêu thích!')),
+    );
+  }
+
+  // Xử lý sự kiện khi nhấn vào nút share
+  void _onSharePressed() {
+    setState(() {
+      // Thực hiện thao tác khi nhấn nút chia sẻ
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Đang chia sẻ...')),
+      );
     });
   }
 
@@ -33,9 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.menu, color: Colors.black),
-            onPressed: () {
-              // Thực hiện hành động khi nhấn vào biểu tượng
-            },
+            onPressed: () {},
           )
         ],
       ),
@@ -43,11 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Hình ảnh và giá
+            // Hình ảnh và nút chuyển hình
             Stack(
               children: [
                 Image.asset(
-                  'assets/image.png',
+                  _imageList[_imageIndex],
                   width: double.infinity,
                   height: 200,
                   fit: BoxFit.cover,
@@ -57,14 +107,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   right: 8,
                   child: Row(
                     children: [
+                      // Nút favorite
                       CircleAvatar(
                         backgroundColor: Colors.white,
-                        child: Icon(Icons.favorite_border, color: Colors.black),
+                        child: IconButton(
+                          icon: Icon(
+                            _isFavorite ? Icons.favorite : Icons.favorite_border,
+                            color: _isFavorite ? Colors.red : Colors.black,
+                          ),
+                          onPressed: _onFavoritePressed, // Gọi hàm khi nhấn
+                        ),
                       ),
                       SizedBox(width: 8),
+                      // Nút share
                       CircleAvatar(
                         backgroundColor: Colors.white,
-                        child: Icon(Icons.share, color: Colors.black),
+                        child: IconButton(
+                          icon: Icon(Icons.share, color: Colors.black),
+                          onPressed: _onSharePressed, // Gọi hàm khi nhấn
+                        ),
                       ),
                     ],
                   ),
@@ -83,6 +144,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
+            // Các nút chuyển qua lại
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: _previousImage, // Chuyển về hình ảnh trước
+                ),
+                IconButton(
+                  icon: Icon(Icons.arrow_forward_ios),
+                  onPressed: _nextImage, // Chuyển sang hình ảnh tiếp theo
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -97,21 +172,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 8),
-
-                  /*Row(
-                    children: [
-                      Text(
-                        '2 Triệu Đồng',
-                        style: TextStyle(
-                          color: Colors.red,
-
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8),*/
-
                   // Địa chỉ
                   Row(
                     children: [
@@ -200,7 +260,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-
                         ),
                       ),
                       Spacer(),
@@ -243,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.account_circle),
             label: '',
           ),
         ],
