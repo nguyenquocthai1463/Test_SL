@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_sl/widgets/CustomBottomNavigationBar.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -285,31 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: '',
-          ),
-        ],
-        selectedItemColor: Colors.blue, // Màu của mục được chọn
-        unselectedItemColor: Colors.grey, // Màu của các mục chưa chọn
-        backgroundColor: Colors.white, // Nền của bottom navigation
-      ),
+      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }

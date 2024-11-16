@@ -4,25 +4,14 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Background image and profile picture
+            // Background image and profile picture with Back button
             Stack(
-              alignment: Alignment.center,
               children: [
                 Container(
-                  height: 150,
+                  height: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/img_user_profile.png'), // Replace with your background image path
@@ -31,7 +20,19 @@ class UserProfile extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 100,
+                  top: 40,
+                  left: 16,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                Positioned(
+                  top: 130,
+                  left: 0,
+                  right: 0,
                   child: CircleAvatar(
                     radius: 45,
                     backgroundColor: Colors.white,
@@ -85,21 +86,30 @@ class UserProfile extends StatelessWidget {
                       // Handle submit action
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green, // Thay thế primary thành backgroundColor
+                      backgroundColor: Color(0xFF00B398), // Màu nền Submit là #00B398
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                     ),
-                    child: Text('Submit'),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Submit',
+                          style: TextStyle(color: Colors.white), // Chữ màu trắng
+                        ),
+                        SizedBox(width: 5),
+                        Icon(Icons.arrow_forward_ios, color: Colors.white), // Biểu tượng màu trắng
+                      ],
+                    ),
                   ),
                   OutlinedButton(
                     onPressed: () {
                       // Handle log out action
                     },
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.purple, // Thay thế primary thành foregroundColor
-                      side: BorderSide(color: Colors.purple),
+                      foregroundColor: Color(0xFF6E0EAA), // Đổi màu viền và chữ thành #6E0EAA
+                      side: BorderSide(color: Color(0xFF6E0EAA)), // Viền Logout
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -109,7 +119,7 @@ class UserProfile extends StatelessWidget {
                       children: [
                         Text('Log out'),
                         SizedBox(width: 5),
-                        Icon(Icons.logout, size: 20),
+                        Icon(Icons.logout, size: 20, color: Color(0xFF6E0EAA)), // Biểu tượng màu tím
                       ],
                     ),
                   ),

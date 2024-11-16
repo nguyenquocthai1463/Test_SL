@@ -1,30 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:test_sl/widgets/AppBar.dart';
+import 'package:test_sl/widgets/CustomBottomNavigationBar.dart';
 
 class Screen_48 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: customAppBar(),*/
-      appBar: AppBar(
-        title: Text('Student Life', style: TextStyle(fontSize: 24)),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.chat_bubble_outline, color: Colors.black),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.more_vert, color: Colors.black),
-            onPressed: () {},
-          ),
-        ],
-      ),
+      appBar: CustomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -114,18 +96,7 @@ class Screen_48 extends StatelessWidget {
           ],
         ),
       ),
-      /*bottomNavigationBar: CustomBottomNavigationBar(),*/
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.business_center), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-        ],
-        selectedItemColor: Colors.blue, // Màu của mục được chọn
-        unselectedItemColor: Colors.grey, // Màu của các mục chưa chọn
-        backgroundColor: Colors.white, // Nền của bottom navigation
-      ),
+      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }
