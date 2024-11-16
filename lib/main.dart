@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test_sl/screens/main-screen-wrapper.dart';
-import 'package:test_sl/screens/personal-information.dart';
-import 'package:test_sl/screens/request-reservation-dialog.dart';
-import 'package:test_sl/screens/social-media-link.dart';
+import 'package:test_sl/screens/personal-information-37.dart';
+import 'package:test_sl/screens/request-reservation-dialog-52.dart';
+import 'package:test_sl/screens/social-media-link-39.dart';
 import 'package:test_sl/screens/welcome-app.dart';
 import 'package:test_sl/screens/63-64.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // Sử dụng MainScreenWrapper để bao bọc tất cả các màn hình
-      home: const MainScreenWrapper(child: ActivitiesAndNews()),
+      home: MainScreenWrapper(child: ActivitiesAndNews()),
     );
   }
 }

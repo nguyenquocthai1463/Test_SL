@@ -53,6 +53,7 @@ class StyleConfigColor {
 
   static Color warning = const Color(0xFFFF424f);
 
+  static Color warningDark1 = const Color(0xFFF11F1F);
   static Color warningDark = const Color(0xFFFF0F0F);
   static Color warningLight1 = const Color(0xFFFF8383);
   static Color warningLight2 = const Color(0xFFFFC2C2);
@@ -63,6 +64,14 @@ class StyleConfigColor {
   static Color orangeDark1 = const Color(0xFFF86513);
 
   static Color succeed = const Color(0xFF00C810);
+  static Color green = const Color(0xFF0AB930);
+
   static Color blue = const Color(0xFF0866FF);
+
+
+  static Color keppelLight1 = const Color(0xFF9FEDBF);
   static Color keppel = const Color(0xFF50A99A);
+
+  static Color beigeLight1 = const Color(0xFFE7DFD9);
+
 }
