@@ -42,7 +42,7 @@ class StyleConfigColor {
   static Color text2Dark7 = const Color(0xFF414146);
   static Color text2Dark8 = const Color(0xFF27272A);
 
-  static Color succeed = const Color(0xFF00C810);
+
 
   static Color notice = const Color(0xFFFFC000);
   static Color noticeLight1 = const Color(0xFFFFD400);
@@ -52,11 +52,17 @@ class StyleConfigColor {
 
 
   static Color warning = const Color(0xFFFF424f);
+
   static Color warningDark = const Color(0xFFFF0F0F);
   static Color warningLight1 = const Color(0xFFFF8383);
   static Color warningLight2 = const Color(0xFFFFC2C2);
   static Color warningLight3 = const Color(0xFFFFF1F1);
 
   static Color gray = const Color(0xFF808080);
+  static Color orangeDark = const Color(0xFFFF8800);
+  static Color orangeDark1 = const Color(0xFFF86513);
 
+  static Color succeed = const Color(0xFF00C810);
+  static Color blue = const Color(0xFF0866FF);
+  static Color keppel = const Color(0xFF50A99A);
 }
