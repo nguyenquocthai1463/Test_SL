@@ -37,8 +37,10 @@ class NotiRoomBox {
                   minimumSize: const Size(45, 15),
                   backgroundColor: const Color(0xffF86513),
                 ),
-                child: const Text('Đối tác',
-                    style: TextStyle(fontSize: 10, color: Colors.black)),
+                child: const Text(
+                  'Đối tác',
+                  style: TextStyle(fontSize: 10, color: Colors.black),
+                ),
               ),
               Text(title, style: const TextStyle(fontSize: 10)),
               Text(price,

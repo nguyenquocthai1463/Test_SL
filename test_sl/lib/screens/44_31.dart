@@ -319,16 +319,22 @@ class _HomeListState extends State<HomeList> {
                               children: [
                                 Image.asset('assets/images/image_56.png',
                                     width: 35, height: 35),
-                                const Column(children: [
-                                  Text('ANDROID APP ON',
+                                const Column(
+                                  children: [
+                                    Text(
+                                      'ANDROID APP ON',
                                       style: TextStyle(
-                                          fontSize: 12, color: Colors.black)),
-                                  Text('App Store',
+                                          fontSize: 12, color: Colors.black),
+                                    ),
+                                    Text(
+                                      'App Store',
                                       style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.black,
-                                          fontWeight: FontWeight.bold))
-                                ])
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                )
                               ],
                             ),
                           ),
