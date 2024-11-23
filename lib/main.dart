@@ -5,8 +5,8 @@ import 'package:test_sl/screens/reset_password.dart';
 import 'package:test_sl/screens/welcome-app.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: LoginHistoryPage(), // Gọi CustomAppBarPage ở đây
+  runApp(MaterialApp( // Loại bỏ từ khóa const ở đây
+    home: ResetPassword(), // Khởi tạo không cần const
   ));
 }
 
