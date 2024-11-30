@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_sl/screens/28.dart';
 import 'package:test_sl/screens/48.dart';
 import 'package:test_sl/screens/UserProfile.dart';
+import 'package:test_sl/screens/social_vote.dart';
 import 'package:test_sl/screens/welcome-app.dart';
 import 'package:test_sl/screens/68_69.dart';
 
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Screen_68_69(),
+      home: SocialVote(),
     );
   }
 }
