@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:test_sl/utils/config-text.dart';
 
 import '../utils/config-color.dart';
+import '../widgets/appbar-sp.dart';
 
 class RequestReservationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Đặt phòng'),
-      ),
+      appBar: AppbarSp(),
       body: Stack(
         children: [
           Center(

@@ -4,6 +4,8 @@ class StyleConfigColor {
 
 
   static Color background = const Color(0xFFF5F5F5);
+  static Color backgroundwhite = const Color(0xFFFFFFFF);
+
   static Color placeholder_text = const Color(0xFFF5F5F5);
 
   static Color primary = const Color(0xFF7939fb);
@@ -60,6 +62,12 @@ class StyleConfigColor {
   static Color warningLight3 = const Color(0xFFFFF1F1);
 
   static Color gray = const Color(0xFF808080);
+  static Color grayShade50 = const Color(0xFFFAFAFA);
+  static Color grayShade100 = const Color(0xFFF5F5F5);
+  static Color grayShade200 = const Color(0xFFEEEEEE);
+  static Color grayShade300 = const Color(0xFFE0E0E0);
+
+
   static Color orangeDark = const Color(0xFFFF8800);
   static Color orangeDark1 = const Color(0xFFF86513);
 
@@ -73,5 +81,7 @@ class StyleConfigColor {
   static Color keppel = const Color(0xFF50A99A);
 
   static Color beigeLight1 = const Color(0xFFE7DFD9);
+
+  static Color yellow = const Color(0xFFF8EE13);
 
 }
