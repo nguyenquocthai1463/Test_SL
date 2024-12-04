@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_sl/widgets/AppBar.dart';
 import 'package:test_sl/widgets/CustomBottomNavigationBar.dart';
+import 'package:test_sl/screens/28.dart';
 
 class Screen_48 extends StatelessWidget {
   @override
@@ -46,57 +47,102 @@ class Screen_48 extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text('Đơn thuê/mua phòng trọ, nhà trọ'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
             ]),
             Section(title: 'Tiện ích', items: [
               ListTile(
                 leading: Icon(Icons.favorite, color: Colors.red),
                 title: Text('Tin đăng đã lưu'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(Icons.bookmark),
                 title: Text('Tìm kiếm đã lưu'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(Icons.star, color: Colors.yellow),
                 title: Text('Đánh giá từ tôi'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(Icons.card_giftcard),
                 title: Text('Ưu đãi của tôi'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
             ]),
             Section(title: '', items: [
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Cài đặt tài khoản'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(Icons.help_outline),
                 title: Text('Trợ giúp'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(Icons.feedback_outlined),
                 title: Text('Đóng góp ý kiến'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(Icons.logout),
                 title: Text('Đăng xuất'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()), // đổi ở đây nha VA
+                  );
+                },
               ),
             ]),
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: CustomBottomNavigationBar(),s
     );
   }
 }
