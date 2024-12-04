@@ -142,7 +142,7 @@ class Screen_48 extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),s
+      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }
