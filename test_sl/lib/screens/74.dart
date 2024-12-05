@@ -74,9 +74,10 @@ class _CommentValuationState extends State<CommentValuation> {
             _buildComment(
                 'assets/images/avatar.png',
                 'Nguyễn Văn A',
-                'Phòng trọ ở đây mình đã thuê ở được 1 tháng rồi ạ. Vật dụng nội thất y như mô tả. Anh chủ tư vấn rất nhiệt tình. Cực kì yêu thích trọ ở đây luôn ạ!',
-                '2 giờ trước',
-                'Mới'),
+                'Bài viết rất hay, giúp ích rất nhiều cho mình',
+                '1 giờ trước',
+                'Đã xác nhận',
+                5),
           ],
         ),
       ),
@@ -92,7 +93,8 @@ class _CommentValuationState extends State<CommentValuation> {
       },
       style: OutlinedButton.styleFrom(
         foregroundColor: Colors.black,
-        backgroundColor: _selectedValue == value ? Colors.blue : Colors.white,
+        backgroundColor:
+            _selectedValue == value ? const Color(0xffAFCDFF) : Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -118,8 +120,8 @@ class _CommentValuationState extends State<CommentValuation> {
     );
   }
 
-  Widget _buildComment(
-      String avatar, String name, String content, String time, String status) {
+  Widget _buildComment(String avatar, String name, String content, String time,
+      String status, int rating) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -146,12 +148,15 @@ class _CommentValuationState extends State<CommentValuation> {
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
-                children: List.generate(maxRating, (index) {
-                  return Icon(
-                    index < rating ? Icons.star_border : Icons.star,
-                    color: Colors.yellow,
-                  );
-                }),
+                children: List.generate(
+                  maxRating,
+                  (index) {
+                    return Icon(
+                      index < rating ? Icons.star_border : Icons.star,
+                      color: Colors.yellow,
+                    );
+                  },
+                ),
               ),
               const SizedBox(width: 10),
               Text(time),

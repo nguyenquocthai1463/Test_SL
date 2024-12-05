@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test_sl/widgets/noti_room_box.dart';
-
 class HomeList extends StatefulWidget {
   const HomeList({super.key});
 
@@ -62,8 +61,9 @@ class _HomeListState extends State<HomeList> {
                         const Text('Top phòng được yêu thích',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
-                        InkWell(
-                          onTap: () {},
+                        TextButton(
+                          onPressed: () => {
+                          },
                           child: const Row(
                             children: [
                               Text(
