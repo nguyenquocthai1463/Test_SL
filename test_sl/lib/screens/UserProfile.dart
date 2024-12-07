@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:test_sl/model/user_model.dart';
 
 class UserProfile extends StatelessWidget {
+  final User user;
+
+  // Constructor nhận một đối tượng User
+  UserProfile({required this.user});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +20,7 @@ class UserProfile extends StatelessWidget {
                   height: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/img_user_profile.png'), // Replace with your background image path
+                      image: AssetImage('assets/img_user_profile.png'), // Thay đổi đường dẫn ảnh nền
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -38,23 +44,23 @@ class UserProfile extends StatelessWidget {
                     backgroundColor: Colors.white,
                     child: CircleAvatar(
                       radius: 40,
-                      backgroundImage: AssetImage('assets/profile.jpg'), // Replace with your profile image path
+                      backgroundImage: NetworkImage(user.socialMedia.facebook), // Sử dụng ảnh từ URL
                     ),
                   ),
                 ),
               ],
             ),
             SizedBox(height: 60),
-            // Form fields
+            // User information
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 children: [
-                  CustomTextField(label: 'Re-enter the name'),
-                  CustomTextField(label: 'Re-enter Email'),
-                  CustomTextField(label: 'Re-enter phone number'),
-                  CustomTextField(label: 'Re-enter the address'),
-                  CustomTextField(label: 'Re-enter gender'),
+                  CustomTextField(label: '${user.personalInfo.fullName}'),
+                  CustomTextField(label: '${user.securityInfo.email}'),
+                  CustomTextField(label: '${user.personalInfo.phoneNumber}'),
+                  CustomTextField(label: '${user.personalInfo.address}'),
+                  CustomTextField(label: '${user.securityInfo.gender}'),
                 ],
               ),
             ),
@@ -143,6 +149,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
+        enabled: false, // Disable input fields
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(color: Colors.grey),
