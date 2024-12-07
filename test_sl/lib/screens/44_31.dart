@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_sl/model/motels.dart';
+import 'package:test_sl/network/network_request.dart';
 import 'package:test_sl/widgets/noti_room_box.dart';
+
 class HomeList extends StatefulWidget {
   const HomeList({super.key});
 
@@ -40,6 +43,7 @@ class _HomeListState extends State<HomeList> {
         ),
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Container(
@@ -62,8 +66,7 @@ class _HomeListState extends State<HomeList> {
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
                         TextButton(
-                          onPressed: () => {
-                          },
+                          onPressed: () => {},
                           child: const Row(
                             children: [
                               Text(
@@ -80,16 +83,38 @@ class _HomeListState extends State<HomeList> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 1', '1.500.000', 'Số 1, Ngõ 1, Phố 1'),
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 2', '2.500.000', 'Số 2, Ngõ 2, Phố 2'),
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 3', '3.500.000', 'Số 3, Ngõ 3, Phố 3'),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FutureBuilder<List<Motels>>(
+                          future: NetWorkRequest.getPersonalInfo(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else if (snapshot.hasData) {
+                              final motels = snapshot.data!;
+                              return Row(
+                                children: motels.map((motel) {
+                                  return NotiRoomBox.notiRoomBox(
+                                    'assets/images/image.png',
+                                    motel.Name,
+                                    motel.Price.toString(),
+                                    motel.Address,
+                                  );
+                                }).toList(),
+                              );
+                            } else {
+                              return const Text('No data');
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -131,16 +156,37 @@ class _HomeListState extends State<HomeList> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 1', '1.500.000', 'Số 1, Ngõ 1, Phố 1'),
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 2', '2.500.000', 'Số 2, Ngõ 2, Phố 2'),
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 3', '3.500.000', 'Số 3, Ngõ 3, Phố 3'),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FutureBuilder<List<Motels>>(
+                            future: NetWorkRequest.getPersonalInfo(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else if (snapshot.hasData) {
+                                final motels = snapshot.data!;
+                                return Row(
+                                  children: motels.map((motel) {
+                                    return NotiRoomBox.notiRoomBox(
+                                      'assets/images/image.png',
+                                      motel.Name,
+                                      motel.Price.toString(),
+                                      motel.Address,
+                                    );
+                                  }).toList(),
+                                );
+                              } else {
+                                return const Text('No data');
+                              }
+                            }),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -182,16 +228,37 @@ class _HomeListState extends State<HomeList> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 1', '1.500.000', 'Số 1, Ngõ 1, Phố 1'),
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 2', '2.500.000', 'Số 2, Ngõ 2, Phố 2'),
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 3', '3.500.000', 'Số 3, Ngõ 3, Phố 3'),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FutureBuilder<List<Motels>>(
+                            future: NetWorkRequest.getPersonalInfo(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else if (snapshot.hasData) {
+                                final motels = snapshot.data!;
+                                return Row(
+                                  children: motels.map((motel) {
+                                    return NotiRoomBox.notiRoomBox(
+                                      'assets/images/image.png',
+                                      motel.Name,
+                                      motel.Price.toString(),
+                                      motel.Address,
+                                    );
+                                  }).toList(),
+                                );
+                              } else {
+                                return const Text('No data');
+                              }
+                            }),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -233,16 +300,37 @@ class _HomeListState extends State<HomeList> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 1', '1.500.000', 'Số 1, Ngõ 1, Phố 1'),
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 2', '2.500.000', 'Số 2, Ngõ 2, Phố 2'),
-                      NotiRoomBox.notiRoomBox('assets/images/image.png',
-                          'Phòng trọ 3', '3.500.000', 'Số 3, Ngõ 3, Phố 3'),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FutureBuilder<List<Motels>>(
+                            future: NetWorkRequest.getPersonalInfo(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else if (snapshot.hasData) {
+                                final motels = snapshot.data!;
+                                return Row(
+                                  children: motels.map((motel) {
+                                    return NotiRoomBox.notiRoomBox(
+                                      'assets/images/image.png',
+                                      motel.Name,
+                                      motel.Price.toString(),
+                                      motel.Address,
+                                    );
+                                  }).toList(),
+                                );
+                              } else {
+                                return const Text('No data');
+                              }
+                            }),
+                      ],
+                    ),
                   )
                 ],
               ),

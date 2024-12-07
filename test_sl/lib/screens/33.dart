@@ -46,6 +46,7 @@ Future<void> _dialeogBuilder(BuildContext context) {
               child: Text('Yêu cầu hẹn xem phòng',
                   style: TextStyle(
                     fontSize: 16,
+                    decoration: TextDecoration.none,
                     color: Color.fromARGB(255, 0, 0, 0),
                   )),
             ),
@@ -55,20 +56,19 @@ Future<void> _dialeogBuilder(BuildContext context) {
                   style: TextStyle(
                     fontSize: 14,
                     color: Color.fromARGB(255, 0, 0, 0),
+                    decoration: TextDecoration.none,
                   )),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 1,
-                itemBuilder: (BuildContext context, int index) {
-                  return _buildDialog(
-                      'Nguyễn Văn A',
-                      'Đã hẹn lịch xem phòng vào 10h00 ngày 10/10/2021',
-                      'assets/images/image.png');
-                },
-              ),
+            ListView(
+              shrinkWrap: true,
+              children: [
+                _buildDialog('Nguyễn Văn A', 'Đã xem phòng, đồng ý thuê phòng',
+                    'assets/images/image.png'),
+                _buildDialog('Nguyễn Văn B', 'Đã xem phòng, đồng ý thuê phòng',
+                    'assets/images/image.png'),
+                _buildDialog('Nguyễn Văn C', 'Đã xem phòng, đồng ý thuê phòng',
+                    'assets/images/image.png'),
+              ],
             ),
           ],
         ),
@@ -79,6 +79,7 @@ Future<void> _dialeogBuilder(BuildContext context) {
 
 Widget _buildDialog(String title, String content, String image) {
   return Container(
+    margin: const EdgeInsets.only(bottom: 10),
     decoration: BoxDecoration(
       color: const Color.fromARGB(255, 210, 210, 210),
       borderRadius: BorderRadius.circular(10),
@@ -87,40 +88,62 @@ Widget _buildDialog(String title, String content, String image) {
     child: Row(
       children: [
         Image.asset(image),
+        const SizedBox(width: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(title,
-                style: const TextStyle(fontSize: 14, color: Color(0xFFF11F1F))),
+                softWrap: true,
+                style: const TextStyle(
+                    fontSize: 14,
+                    decoration: TextDecoration.none,
+                    color: Color(0xFFF11F1F))),
             const SizedBox(height: 5),
-            Text(content,
-                style: const TextStyle(fontSize: 16, color: Colors.black)),
+            SizedBox(
+              width: 250,
+              child: Text(content,
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
+                  style: const TextStyle(
+                      fontSize: 16,
+                      decoration: TextDecoration.none,
+                      color: Colors.black)),
+            ),
             const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-                    backgroundColor: const Color(0xFF50A99A),
+            Padding(
+              padding: const EdgeInsets.only(left: 80),
+              child: Row(
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 18, vertical: 8),
+                      backgroundColor: const Color(0xFF50A99A),
+                    ),
+                    onPressed: () {},
+                    child: const Text('Duyệt yêu cầu',
+                        style: TextStyle(
+                          color: Colors.white,
+                          decoration: TextDecoration.none,
+                        )),
                   ),
-                  onPressed: () {},
-                  child: const Text('Duyệt yêu cầu',
-                      style: TextStyle(color: Colors.white)),
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-                    backgroundColor: const Color(0xFF50A99A),
+                  const SizedBox(width: 10),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 18, vertical: 8),
+                      backgroundColor: const Color(0xFF50A99A),
+                    ),
+                    onPressed: () {},
+                    child: const Text('Xem thông tin',
+                        style: TextStyle(
+                          color: Colors.white,
+                          decoration: TextDecoration.none,
+                        )),
                   ),
-                  onPressed: () {},
-                  child: const Text('Hủy yêu cầu',
-                      style: TextStyle(color: Colors.white)),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         )

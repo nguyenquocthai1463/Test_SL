@@ -1,10 +1,20 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:test_sl/model/respose_data.dart';
-
+import 'package:test_sl/model/motels.dart';
 
 class NetWorkRequest {
-  static const String url = "http://192.168.1.18:8080/api";
-
-  
+  static const String url =
+      "https://raw.githubusercontent.com/dvanh0101/Mobile_Data/refs/heads/master";
+  static Future<List<Motels>> getPersonalInfo() async {
+    final response = await http.get(
+      Uri.parse("$url/Student_Life.Motels.json"),
+    );
+    String body = response.body;
+    List<dynamic> jsonList = jsonDecode(body);
+    if (response.statusCode == 200) {
+      return jsonList.map((json) => Motels.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load getPersonalInfo');
+    }
+  }
 }
