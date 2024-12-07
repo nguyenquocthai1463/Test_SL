@@ -5,81 +5,30 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
+import '../widgets/image-rights-requested.dart';
+
 class BottomDialogDemo extends StatelessWidget {
   const BottomDialogDemo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ElevatedButton(
-        onPressed: () async {
-          final hasPermission = await _requestPhotoPermission(context);
-          if (hasPermission) {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-              ),
-              builder: (context) => const BottomDialogPostTus(),
-            );
-          }
+      child: ImagePermissionRequestWidget(
+        onGranted: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            builder: (context) => const BottomDialogPostTus(),
+          );
         },
-        child: const Text('Hiện Bottom Dialog'),
       ),
     );
   }
-
-  Future<bool> _requestPhotoPermission(BuildContext context) async {
-    final permission = await _getPhotoPermissionType();
-    final status = await permission.request();
-
-    if (status.isGranted) {
-      return true;
-    } else if (status.isPermanentlyDenied) {
-      _showPermissionDeniedDialog(context);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Bạn cần cấp quyền để truy cập ảnh!')),
-      );
-    }
-    return false;
-  }
-
-  Future<Permission> _getPhotoPermissionType() async {
-    if (Platform.isAndroid) {
-      final androidInfo = await DeviceInfoPlugin().androidInfo;
-      return (androidInfo.version.sdkInt >= 33) ? Permission.photos : Permission.storage;
-    } else {
-      return Permission.photos; // iOS
-    }
-  }
-
-  void _showPermissionDeniedDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Cần cấp quyền truy cập ảnh'),
-          content: const Text('Quyền truy cập ảnh đã bị từ chối vĩnh viễn. Vui lòng vào cài đặt để cấp quyền.'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                openAppSettings();
-              },
-              child: const Text('Cài đặt'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Hủy'),
-            ),
-          ],
-        );
-      },
-    );
-  }
 }
+
 
 class BottomDialogPostTus extends StatefulWidget {
   const BottomDialogPostTus({Key? key}) : super(key: key);
