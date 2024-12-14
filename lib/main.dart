@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // Sử dụng MainScreenWrapper để bao bọc tất cả các màn hình
-      home: MainScreenWrapper(child: RoomForm()),
+      home: MainScreenWrapper(child: ReviewStatisticsScreen()),
     );
   }
 }
