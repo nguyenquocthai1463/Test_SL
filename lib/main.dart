@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_sl/screens/login-page.dart';
 import 'package:test_sl/screens/main-screen-wrapper.dart';
 import 'package:test_sl/screens/personal-information-37.dart';
 import 'package:test_sl/screens/post-new-room-88.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // Sử dụng MainScreenWrapper để bao bọc tất cả các màn hình
-      home: MainScreenWrapper(child: ReviewStatisticsScreen()),
+      home: MainScreenWrapper(child: WelcomeApp()),
     );
   }
 }

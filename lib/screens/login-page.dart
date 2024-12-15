@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // Import thư viện HTTP
 import 'package:test_sl/utils/config-color.dart';
 import 'package:test_sl/utils/config-text.dart';
 
@@ -15,8 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isPasswordVisible = false;
   bool isLoginFailed = false;
 
-  String? usernameError; // Lỗi username
-  String? passwordError; // Lỗi password
+  String? usernameError;
+  String? passwordError;
   bool usernameHasError = false;
   bool passwordHasError = false;
 
@@ -29,7 +31,56 @@ class _LoginScreenState extends State<LoginScreen> {
 
       usernameError = usernameHasError ? "Username is required" : null;
       passwordError = passwordHasError ? "Password is required" : null;
+
+      if (!usernameHasError && !passwordHasError && isLoginFailed) {
+        usernameError = "Invalid username or password";
+        passwordError = "Invalid username or password";
+      }
     });
+  }
+
+  Future<void> login() async {
+    const url =
+        'https://raw.githubusercontent.com/dvanh0101/Mobile_Data/master/Student_Life.Users.json';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        // Parse JSON
+        final List<dynamic> users = json.decode(response.body);
+
+        // Tìm kiếm thông tin người dùng
+        final user = users.firstWhere(
+          (user) =>
+              user['Username'] == usernameController.text &&
+              user['Password'] == passwordController.text,
+          orElse: () => null,
+        );
+
+        if (user != null) {
+          // Đăng nhập thành công
+          setState(() {
+            isLoginFailed = false;
+          });
+        } else {
+          // Đăng nhập thất bại
+          setState(() {
+            isLoginFailed = true;
+          });
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Invalid username or password')),
+          );
+        }
+      } else {
+        throw Exception('Failed to load user data');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
   }
 
   @override
@@ -170,32 +221,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-
-  Widget _buildLoginButton() {
-    return Container(
-      height: 50,
-      width: MediaQuery.of(context).size.width * .3,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: StyleConfigColor.primary,
-      ),
-      child: TextButton(
-        onPressed: () {
-
-          if (formKey.currentState!.validate()) {
-            // login();
-            isLoginFailed = true;
-            _validateForm();
-          }
-          _validateForm();
-        },
-        child: Text("Login",
-            style:
-                StyleConfigText.title3.copyWith(color: StyleConfigColor.text2)),
-      ),
-    );
-  }
-
   Widget _buildSocialLoginOptions() {
     return Column(
       children: [
@@ -205,6 +230,47 @@ class _LoginScreenState extends State<LoginScreen> {
             'assets/images/google_icon.png', "Login with Google"),
         _buildSocialLoginButton(
             'assets/images/apple_icon.png', "Login with Apple"),
+      ],
+    );
+  }
+
+  Widget _buildForgotPassword() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        TextButton(
+          onPressed: () {
+            // Chuyển hướng tới màn hình đăng ký
+          },
+          child: Text(
+            "Forgot password",
+            style: StyleConfigText.bodyTextRegular2.copyWith(
+                color: StyleConfigColor.primary,
+                decoration: TextDecoration.underline),
+          ),
+        ),
+        const SizedBox(width: 10),
+      ],
+    );
+  }
+
+  Widget _buildSignUpRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Don't have an account?",
+          style: StyleConfigText.bodyTextRegular3
+              .copyWith(color: StyleConfigColor.textLight3),
+        ),
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            "Sign up",
+            style: StyleConfigText.bodyTextRegular3
+                .copyWith(color: StyleConfigColor.primary),
+          ),
+        ),
       ],
     );
   }
@@ -251,37 +317,25 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSignUpRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Don't have an account?", style: StyleConfigText.bodyTextRegular3.copyWith(color: StyleConfigColor.textLight3),),
-        TextButton(
-          onPressed: () {},
-          child: Text("Sign up", style: StyleConfigText.bodyTextRegular3.copyWith(color: StyleConfigColor.primary),),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildForgotPassword() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        TextButton(
-          onPressed: () {
-            // Chuyển hướng tới màn hình đăng ký
-          },
-          child: Text(
-            "Forgot password",
-            style: StyleConfigText.bodyTextRegular2.copyWith(
-                color: StyleConfigColor.primary,
-                decoration: TextDecoration.underline),
-          ),
-        ),
-        const SizedBox(width: 10),
-      ],
+  Widget _buildLoginButton() {
+    return Container(
+      height: 50,
+      width: MediaQuery.of(context).size.width * .3,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: StyleConfigColor.primary,
+      ),
+      child: TextButton(
+        onPressed: () {
+          _validateForm();
+          if (!usernameHasError && !passwordHasError) {
+            login();
+          }
+        },
+        child: Text("Login",
+            style:
+                StyleConfigText.title3.copyWith(color: StyleConfigColor.text2)),
+      ),
     );
   }
 }
-
